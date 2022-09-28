@@ -1,0 +1,7 @@
+{
+  "name": "notifynd-ios-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
