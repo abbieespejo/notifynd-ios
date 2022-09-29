@@ -1,0 +1,7 @@
+{
+  "name": "notifynd-ios-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
