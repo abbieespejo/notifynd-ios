@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+// import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+declare var cordova: any;
+
 
 @Component({
   selector: 'app-tab2',
@@ -8,16 +10,14 @@ import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications
 })
 export class Tab2Page {
 
-  constructor(private localNotifications: LocalNotifications) { 
+  constructor() { 
   }
 
   scheduleNotification() {
-    this.localNotifications.schedule({
-      id: 1,
-      title: 'This is an example title!',
-      text: 'you have just received a new notification',
-      data: { mydata: "This is a hidden, lucky message!" }
-    });
+    cordova.plugins.notification.local.schedule({
+      title: 'My first notification',
+      text: 'Thats pretty easy...',
+      foreground: true
+  });
   }
-
 }
