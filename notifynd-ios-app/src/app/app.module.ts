@@ -6,6 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
+//  Firebase modules
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+// Environment
+import { environment } from '../environments/environment';
 
 
 @NgModule({

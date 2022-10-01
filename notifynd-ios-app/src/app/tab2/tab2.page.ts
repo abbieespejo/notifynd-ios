@@ -15,8 +15,17 @@ export class Tab2Page {
   locationTraces = [];
 
   constructor(private geolocation: Geolocation) { 
-
+    cordova.plugins.notification.local.schedule({
+      title: 'Welcome to 10 Moana Road',
+      trigger: {
+          type: 'location',
+          center: [-41.287901, 174.754702], // The center point of the geographic area.
+          radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
+          notifyOnEntry: true
+      }
+    });
   }
+  
   getCoordinates() {
     this.geolocation.getCurrentPosition().then((resp) => {
 
@@ -26,7 +35,6 @@ export class Tab2Page {
         accuracy:resp.coords.accuracy,
         timestamp:resp.timestamp
       });
-
     }).catch((error) => {
       console.log('Error getting location', error);
     });
