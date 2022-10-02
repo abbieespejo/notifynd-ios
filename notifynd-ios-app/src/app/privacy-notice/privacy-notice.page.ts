@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
+
 
 @Component({
   selector: 'app-privacy-notice',
   templateUrl: './privacy-notice.page.html',
   styleUrls: ['./privacy-notice.page.scss'],
 })
-export class PrivacyNoticePage implements OnInit {
 
-  constructor(private geolocation: Geolocation) {
-  }
-    
+export class PrivacyNoticePage {
 
-  ngOnInit() {
+  buttonDisabled: boolean = true;
+
+  constructor(private diagnostic: Diagnostic) {
+   
   }
+ 
   allowLocationTracking() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-
-   }
+    let successCallback = (authStatus) => {
+        if(authStatus === this.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE || this.diagnostic.permissionStatus.GRANTED) {
+          this.buttonDisabled = false;
+        }
+      }
+    let errorCallback = (e) => console.log(e);
+    this.diagnostic.requestLocationAuthorization().then(successCallback).catch(errorCallback);
+  }
 }
+   
+
