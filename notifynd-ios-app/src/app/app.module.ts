@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],

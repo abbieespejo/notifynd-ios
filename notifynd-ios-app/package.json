@@ -20,7 +20,6 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@awesome-cordova-plugins/geolocation": "^5.45.0",
-    "@awesome-cordova-plugins/local-notifications": "^5.45.0",
     "@ionic/angular": "^6.1.9",
     "@ionic/cordova-builders": "^7.0.0",
     "cordova-ios": "6.2.0",

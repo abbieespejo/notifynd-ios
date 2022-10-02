@@ -15,8 +15,8 @@ export class Tab2Page {
   locationTraces = [];
 
   constructor(private geolocation: Geolocation) { 
-
   }
+  
   getCoordinates() {
     this.geolocation.getCurrentPosition().then((resp) => {
 
@@ -26,7 +26,6 @@ export class Tab2Page {
         accuracy:resp.coords.accuracy,
         timestamp:resp.timestamp
       });
-
     }).catch((error) => {
       console.log('Error getting location', error);
     });
