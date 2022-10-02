@@ -2,7 +2,7 @@
   <ion-slides>
     <ion-slide>
       <div class="slide">
-        <img src="./assets/world.png" />
+        <img src="./assets/phone-with-notification.png" />
         <h2>What is Notifynd?</h2>
         <p>
           Whether you're travelling to a new city for the first time or you're a long-time local in your hometown, <b>Notifynd</b> sends you real-time, insightful, bite-sized notifications about the places and businesses around you.
@@ -19,18 +19,18 @@
     </ion-slide>
 
     <ion-slide>
-      <img src="./assets/notebook.png" />
-      <h2>What's in it for you?</h2>
+      <img src="./assets/world.png" />
+      <h2>Discover with ease</h2>
       <p>
-        <b>Notifynd</b> lets you learn about the places around you! Be the first to find out about nearby businesses who are hiring or if there's a music festival not far from you! You're able to bookmark these notifications for future reference as well.
+        With <b>Notifynd</b> you can discover musical festivals near you, job opportunities at local businesses or which bar currently has the best happy hour specials; whatever it may be, it's that easy!
       </p>
     </ion-slide>
 
     <ion-slide>
       <img src="./assets/social-media.png" />
-      <h2>Grow your business</h2>
+      <h2>Grow your audience</h2>
       <p>
-       If you own a small business or want to plug a big event <b>Notifynd</b> lets you reach out to engaged customers. Contact us today to see if we're the right platform for you!
+        From small business owners to big event hosters, get in touch with us today to see if <b>Notifynd</b> is the the right platform for improving your audience growth. <b>Notifynd</b> lets you reach out to regulars and newcomers - a dynamic range of potential customers! 
       </p>
     </ion-slide>
 
@@ -40,7 +40,8 @@
       <p>
        <b>We don't store or share any of your locational data. To continue using Notifynd you must allow location tracking.</b>
       </p>
-      <ion-button fill="clear" (click)="allowLocationTracking()">Continue <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+      <ion-button fill="clear" (click)="allowLocationTracking()">Authorise location tracking</ion-button>
+      <ion-button href="./tab1" [disabled]="this.buttonDisabled"> Continue <ion-icon slot="end" name="arrow-forward"></ion-icon> </ion-button>
     
       
     </ion-slide>
