@@ -14,6 +14,13 @@
   </ion-header>
 
   <app-explore-container name="Tab 2 page"></app-explore-container>
+  <p>BRUHHHHHHH</p>
+  <div *ngFor="let user of collection">
+    <div>
+     <p>{{user[0].text}}</p>
+     <p>"This is a string</p>
+    </div>
+   </div>
   <ion-list>
 
     <ion-item *ngFor="let location of locationTraces">
@@ -32,5 +39,7 @@
   </ng-template>
 
   <button ion-button full (click)="scheduleNotification()" large round> Schedule!!!!</button>
+  <button ion-button full (click)="readDb()" large round>Read database</button>
+ 
 
 </ion-content>
