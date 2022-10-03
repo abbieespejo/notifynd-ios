@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "notifynd-9867d": {
+      "hosting": {
+        "app": [
+          "notifynd-9867d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "notifynd-9867d"
+  }
+}

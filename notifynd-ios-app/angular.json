@@ -168,6 +168,16 @@
               "browserTarget": "app:build:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "app:build:production",
+            "firebaseProject": "notifynd-9867d",
+            "firebaseHostingSite": "notifynd-9867d"
+          }
         }
       }
     }
