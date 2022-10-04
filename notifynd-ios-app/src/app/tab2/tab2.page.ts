@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { collection, collectionData, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
-import { Observable } from 'rxjs';
+import { DataService } from '../services/data.service';
 // import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 
 declare var cordova: any;
@@ -20,7 +20,7 @@ export class Tab2Page {
 
   collection = [];
 
-  constructor(private geolocation: Geolocation, private firestore: Firestore) { 
+  constructor(private geolocation: Geolocation, private db: DataService) { 
     // cordova.plugins.notification.local.schedule({
     //   title: 'Welcome to 10 Moana Road',
     //   trigger: {
@@ -31,15 +31,6 @@ export class Tab2Page {
     //   }
     // });
 
-  }
-
-  readDb() {
-    const notificationsref = collection(this.firestore, 'notifications');
-    collectionData(notificationsref).subscribe((res) => {
-      console.log(res);
-      //this.collection = res;
-    })
-    
   }
   
   getCoordinates() {
