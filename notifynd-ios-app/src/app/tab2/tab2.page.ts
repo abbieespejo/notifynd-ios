@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { collection, collectionData, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 import { DataService } from '../services/data.service';
-// import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
-
-declare var cordova: any;
 
 @Component({
   selector: 'app-tab2',
@@ -20,17 +18,10 @@ export class Tab2Page {
 
   collection = [];
 
-  constructor(private geolocation: Geolocation, private db: DataService) { 
-    // cordova.plugins.notification.local.schedule({
-    //   title: 'Welcome to 10 Moana Road',
-    //   trigger: {
-    //       type: 'location',
-    //       center: [-41.287901, 174.754702], // The center point of the geographic area.
-    //       radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
-    //       notifyOnEntry: true
-    //   }
-    // });
+  constructor(private geolocation: Geolocation, private db: DataService) { }
 
+  prepareNotifications() {
+    this.db.loadNotifications();
   }
   
   getCoordinates() {

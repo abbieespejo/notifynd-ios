@@ -32,14 +32,12 @@
     </ion-item>
   </ion-list>
   <ng-container *ngIf="!locationWatchStarted; else elseTemplate">
-    <ion-button color="primary" (click)="getCoordinates()">Start Location</ion-button>
+    <ion-button color="primary" (click)="getCoordinates()">Start tracking</ion-button>
   </ng-container>
   <ng-template #elseTemplate>
     Location Watch Started!
   </ng-template>
-
-  <button ion-button full (click)="scheduleNotification()" large round> Schedule!!!!</button>
-  <button ion-button full (click)="readDb()" large round>Read database</button>
+  <ion-button color="primary" (click)="prepareNotifications()">Prepare notifications</ion-button>
  
 
 </ion-content>

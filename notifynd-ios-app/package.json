@@ -22,10 +22,10 @@
     "@angular/router": "^14.0.0",
     "@awesome-cordova-plugins/diagnostic": "^5.45.0",
     "@awesome-cordova-plugins/geolocation": "^5.45.0",
+    "@awesome-cordova-plugins/local-notifications": "^5.45.0",
     "@ionic/angular": "^6.1.9",
     "@ionic/cordova-builders": "^7.0.0",
     "cordova-ios": "6.2.0",
-    "cordova-plugin-local-notification-mf": "^1.0.0-beta.0",
     "ionicons": "^6.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
@@ -80,12 +80,11 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-local-notification": {},
-      "cordova-plugin-local-notification-mf": {},
       "cordova-plugin-geolocation": {
         "GPS_REQUIRED": "true"
       },
-      "cordova.plugins.diagnostic": {}
+      "cordova.plugins.diagnostic": {},
+      "cordova-plugin-local-notification": {}
     },
     "platforms": [
       "ios"

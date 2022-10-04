@@ -9,11 +9,12 @@ import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideFirestore(() => getFirestore())],
-  providers: [ Diagnostic, Geolocation, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [ Diagnostic, LocalNotifications, Geolocation, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
