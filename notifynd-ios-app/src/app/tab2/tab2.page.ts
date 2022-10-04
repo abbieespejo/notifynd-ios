@@ -13,6 +13,7 @@ declare var cordova: any;
 })
 export class Tab2Page {
 
+
   locationWatchStarted:boolean;
   locationSubscription:any;
   locationTraces = [];
@@ -23,7 +24,18 @@ export class Tab2Page {
   constructor(private geolocation: Geolocation,
     private db: DataService,
     private localNotif: LocalNotifications, 
-    private diagnostic: Diagnostic) { }
+    private diagnostic: Diagnostic) { 
+
+      cordova.plugins.notification.local.schedule({
+        title: 'Welcome to 10 Moana Road',
+        trigger: {
+          type: 'location',
+          center: [-41.287901, 174.754702], // The center point of the geographic area.
+          radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
+          notifyOnEntry: true
+        }
+      });
+    }
 
   prepareNotifications() {
     let notifCollection = this.db.getNotifsInDB();
@@ -51,32 +63,35 @@ export class Tab2Page {
   }
 
   testNotif() {
-    this.localNotif.schedule(
-      {
-      title: 'My first notification',
-      text: 'Thats pretty easy...',
+    this.localNotif.schedule({
+      title: 'This is a test notification',
+      text: 'Hello!',
       foreground: true
-      });
+    });
     // this.localNotif.requestPermission();
-  //   cordova.plugins.notification.local.schedule([
-  //     {
-  //     title: 'My first notification',
-  //     text: 'Thats pretty easy...',
-  //     foreground: true
-  //     },
-  //     {
-  //     title: 'Welcome to 10 Moana Road',
-  //     foreground: true,
-  //     trigger: {
-  //         type: 'location',
-  //         center: [-41.287901, 174.754702], // The center point of the geographic area.
-  //         radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
-  //         notifyOnEntry: true
-  //     }
-  //   }
+  }
 
-}
-  
+  testMultipleNotifs() {
+    this.localNotif.schedule([
+      {
+        id: 1,
+        title: 'My first notification',
+        text: 'Thats pretty easy...',
+        foreground: true
+      },
+      {
+        id: 2,
+        title: 'My second notification',
+        text: 'whoever said it was easy is a liar!',
+        foreground: true
+      }
+    ]);
+  }
+
+  testLocationNotif() {
+    
+  }
+
   getCoordinates() {
     // this.geolocation.getCurrentPosition().then((resp) => {
 
@@ -105,6 +120,34 @@ export class Tab2Page {
         "Longitude: " + resp.coords.longitude + "\n" +
         "------------------------------------------");
     });
+  }
+
+  getCoordinatesV2() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+
+      this.locationTraces.push({
+        latitude:resp.coords.latitude,
+        longitude:resp.coords.longitude,
+        accuracy:resp.coords.accuracy,
+        timestamp:resp.timestamp
+      });
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+
+    this.locationSubscription = this.geolocation.watchPosition();
+    this.locationSubscription.subscribe((resp) => {
+
+      this.locationWatchStarted = true;
+      this.locationTraces.push({
+        latitude:resp.coords.latitude,
+        longitude:resp.coords.latitude,
+        accuracy:resp.coords.accuracy,
+        timestamp:resp.timestamp
+      });
+
+    });
+
   }
 
 

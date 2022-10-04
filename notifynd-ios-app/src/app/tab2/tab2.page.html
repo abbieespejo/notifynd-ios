@@ -21,8 +21,7 @@
      <p>"This is a string</p>
     </div>
    </div>
-  <ion-list>
-
+  <!-- <ion-list>
     <ion-item *ngFor="let location of locationTraces">
       <ion-label class="ion-text-wrap">
         <ion-label>Time: {{location.timestamp | date:'M/d/yy, h:mm a'}}</ion-label>
@@ -30,14 +29,16 @@
         <ion-label>Accuracy: {{location.accuracy}}</ion-label>
       </ion-label>
     </ion-item>
-  </ion-list>
-  <ng-container *ngIf="!locationWatchStarted; else elseTemplate">
-    <ion-button color="primary" (click)="getCoordinates()">Start tracking</ion-button>
+  </ion-list> -->
+  <!-- <ng-container *ngIf="!locationWatchStarted; else elseTemplate">
+    <ion-button color="primary" (click)="getCoordinatesV2()">Start tracking</ion-button>
   </ng-container>
   <ng-template #elseTemplate>
     Location Watch Started!
-  </ng-template>
-  <ion-button color="primary" (click)="testNotif()">Test notification</ion-button>
- 
+  </ng-template> -->
+  <ion-button color="primary" (click)="testNotif()">testNotif</ion-button>
+  <ion-button color="primary" (click)="testMultipleNotifs()">testMultipleNotifs</ion-button>
+  <ion-button color="primary" (click)="testLocationNotif()">testLocationNotif</ion-button>
+  <ion-button color="primary" (click)="getCoordinatesV2()">Start tracking</ion-button>
 
 </ion-content>
