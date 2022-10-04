@@ -25,17 +25,66 @@ export class Tab2Page {
     private db: DataService,
     private localNotif: LocalNotifications, 
     private diagnostic: Diagnostic) { 
-
-      cordova.plugins.notification.local.schedule({
-        title: 'Welcome to 10 Moana Road',
-        trigger: {
-          type: 'location',
-          center: [-41.287901, 174.754702], // The center point of the geographic area.
-          radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
-          notifyOnEntry: true
-        }
-      });
     }
+
+  scheduleLocationBasedNotif() {
+    cordova.plugins.notification.local.schedule({
+      id: 3,
+      title: 'Welcome to 10 Moana Road',
+      trigger: {
+        type: 'location',
+        center: [-41.287901, 174.754702], // The center point of the geographic area.
+        radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
+        notifyOnEntry: true,
+        notifyOnExit: true
+      }
+    });
+    // let result = this.localNotif.getScheduledIds()
+    this.localNotif.getScheduledIds().then(data => {
+      console.log("\nSCHEDULED NOTIFS IDs: " + data);
+    });
+    this.localNotif.getAll().then(data => {
+      console.log("\nALL NOTIF OBJECTS: \n" +
+        "--> " + data + "\n" +
+        "------------------------------------------");
+    });
+  }
+  
+  testNotif() {
+    this.localNotif.schedule({
+      title: 'This is a test notification',
+      text: 'Hello!',
+      foreground: true
+    });
+  }
+
+  testMultipleNotifs() {
+    this.localNotif.schedule([
+      {
+        id: 1,
+        title: 'My first notification',
+        text: 'Thats pretty easy...',
+        foreground: true
+      },
+      {
+        id: 2,
+        title: 'My second notification',
+        text: 'whoever said it was easy is a liar!',
+        foreground: true
+      }
+    ]);
+  }
+
+
+  getCoordinates() {
+    this.locationSubscription = this.geolocation.watchPosition();
+    this.locationSubscription.subscribe((resp) => {
+      console.log("\nWATCHING... COORDS HAVE CHANGED: \n" +
+        "Latitude: " + resp.coords.latitude + "\n" +
+        "Longitude: " + resp.coords.longitude + "\n" +
+        "------------------------------------------");
+    });
+  }
 
   prepareNotifications() {
     let notifCollection = this.db.getNotifsInDB();
@@ -59,66 +108,6 @@ export class Tab2Page {
           }
         });
       }
-    });
-  }
-
-  testNotif() {
-    this.localNotif.schedule({
-      title: 'This is a test notification',
-      text: 'Hello!',
-      foreground: true
-    });
-    // this.localNotif.requestPermission();
-  }
-
-  testMultipleNotifs() {
-    this.localNotif.schedule([
-      {
-        id: 1,
-        title: 'My first notification',
-        text: 'Thats pretty easy...',
-        foreground: true
-      },
-      {
-        id: 2,
-        title: 'My second notification',
-        text: 'whoever said it was easy is a liar!',
-        foreground: true
-      }
-    ]);
-  }
-
-  testLocationNotif() {
-    
-  }
-
-  getCoordinates() {
-    // this.geolocation.getCurrentPosition().then((resp) => {
-
-    //   this.locationTraces.push({
-    //     latitude:resp.coords.latitude,
-    //     longitude:resp.coords.latitude,
-    //     accuracy:resp.coords.accuracy,
-    //     timestamp:resp.timestamp
-    //   });
-    // }).catch((error) => {
-    //   console.log('Error getting location', error);
-    // });
-
-    this.locationSubscription = this.geolocation.watchPosition();
-    this.locationSubscription.subscribe((resp) => {
-
-      this.locationWatchStarted = true;
-      // this.locationTraces.push({
-      //   latitude:resp.coords.latitude,
-      //   longitude:resp.coords.latitude,
-      //   accuracy:resp.coords.accuracy,
-      //   timestamp:resp.timestamp
-      // });
-      console.log("\n Current location: \n" +
-        "Latitude: " + resp.coords.latitude + "\n" +
-        "Longitude: " + resp.coords.longitude + "\n" +
-        "------------------------------------------");
     });
   }
 
@@ -149,8 +138,20 @@ export class Tab2Page {
     });
 
   }
+  jfsdfjklf() {
+   this.localNotif.schedule({
+      id: 3,
+      title: 'Welcome to 10 Moana Road',
+      trigger: {
+        // type: 'location',
+        center: [-41.287901, 174.754702], // The center point of the geographic area.
+        radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
+        notifyOnEntry: true,
+        notifyOnExit: true
+      }
+    });
 
-
+  }
 }
 
 
