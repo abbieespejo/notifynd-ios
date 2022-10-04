@@ -8,7 +8,6 @@ import {
 } from '@angular/fire/firestore';
 import { collection } from '@firebase/firestore';
 import { Observable } from 'rxjs';
-import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 
 export interface notifObj {
   title: string;
@@ -24,28 +23,33 @@ export interface notifObj {
 
 export class DataService {
 
-  constructor(private firestore: Firestore, private localNotif: LocalNotifications) { }
+  constructor(private firestore: Firestore) { }
 
-  loadNotifications() {
+    getNotifsInDB(): Observable<notifObj[]> {
     const notifRef = collection(this.firestore, 'notifications');
-    const notifCollection = collectionData(notifRef) as Observable<notifObj[]>;
-    notifCollection.subscribe(docs => {
-      for (let i = 0; i <= docs.length; i++) {
-        this.localNotif.schedule({
-          id: i,
-          title: docs[i].title,
-          text: docs[i].text,
-          trigger: {
-            center: [docs[i].latitude, docs[i].longitude],
-            radius: docs[i].radius,
-            notifyOnEntry: true
-          }
-        });
-      }
-    });
-    this.localNotif.getAllScheduled().then(result => {
-      console.log("THESE ARE THE SCHEDULE NOTIFS" + result);
-    })
+    return collectionData(notifRef) as Observable<notifObj[]>;
   }
+
+  // loadNotifications() {
+  //   const notifRef = collection(this.firestore, 'notifications');
+  //   const notifCollection = collectionData(notifRef) as Observable<notifObj[]>;
+    // notifCollection.subscribe(docs => {
+    //   for (let i = 0; i <= docs.length; i++) {
+    //     this.localNotif.schedule({
+    //       id: i,
+    //       title: docs[i].title,
+    //       text: docs[i].text,
+    //       trigger: {
+    //         center: [docs[i].latitude, docs[i].longitude],
+    //         radius: docs[i].radius,
+    //         notifyOnEntry: true
+    //       }
+    //     });
+    //   }
+    // });
+    // this.localNotif.getAllScheduled().then(result => {
+    //   console.log("THESE ARE THE SCHEDULE NOTIFS" + result);
+    // })
+  // }
 }
 
