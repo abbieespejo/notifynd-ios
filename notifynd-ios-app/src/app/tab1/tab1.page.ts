@@ -38,16 +38,19 @@ export class Tab1Page {
   }
 
   checkNotifications() {
-    this.localNotif.getAllScheduled().then(data => {
-      for(let i = 0; i <= data.length; i++) {
-      console.log("\nRETRIEVED NOTIFICATION: " + data[i].id +"\n" +
-      "Title: " + data[i].title + "\n" +
-      "Text: " + data[i].text + "\n" + 
-      "Trigger details:\n" +
-      "Latitude: " + data[i].trigger.center[0] + "\n" +
-      "Longitude: " + data[i].trigger.center[1] + "\n" +
-      "Radius: " + data[i].trigger.radius + "\n" +
-      "Notify on entry: " + data[i].trigger.notifyOnEntry + "\n");
+    this.localNotif.getScheduledIds().then(result => {
+      for(let i = 0; i <= result.length; i++) {
+        this.localNotif.get(i).then(data => {
+          console.log("\nRETRIEVED NOTIFICATION: " + data[i].id +"\n" +
+          "Title: " + data[i].title + "\n" +
+          "Text: " + data[i].text + "\n" + 
+          "Trigger details:\n" +
+          "Latitude: " + data[i].trigger.center[0] + "\n" +
+          "Longitude: " + data[i].trigger.center[1] + "\n" +
+          "Radius: " + data[i].trigger.radius + "\n" +
+          "Notify on entry: " + data[i].trigger.notifyOnEntry + "\n");
+        })
+      
       }
     });
   }

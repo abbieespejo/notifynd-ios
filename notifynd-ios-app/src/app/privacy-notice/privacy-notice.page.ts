@@ -51,7 +51,7 @@ export class PrivacyNoticePage {
           text: docs[i].text,
           foreground: true,
           trigger: {
-            type: 'location',
+            // type: 'location',
             center: [docs[i].latitude, docs[i].longitude],
             radius: docs[i].radius,
             notifyOnEntry: true
