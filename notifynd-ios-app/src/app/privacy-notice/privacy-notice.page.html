@@ -1,5 +1,5 @@
 <ion-content  fullscreen class="ion-padding" scroll-y="false">
-  <ion-slides>
+  <ion-slides pager="true">
     <ion-slide>
       <div class="slide">
         <img src="./assets/phone-with-notification.png" />
@@ -22,7 +22,7 @@
       <img src="./assets/world.png" />
       <h2>Discover with ease</h2>
       <p>
-        With <b>Notifynd</b> you can discover musical festivals near you, job opportunities at local businesses or which bar currently has the best happy hour specials; whatever it may be, it's that easy!
+        With <b>Notifynd</b> you can discover musical festivals near you, job opportunities at local businesses or which bar currently has the best happy hour specials; whatever it might be, it's that easy!
       </p>
     </ion-slide>
 
@@ -35,15 +35,21 @@
     </ion-slide>
 
     <ion-slide>
+      <img src="./assets/cat-with-phone.png" />
+      <h2>Beep beep boop!</h2>
+      <ion-button id="notification-button" shape="round" (click)="prepareNotifications()">Enable notifications</ion-button>
+      <!-- <ion-icon slot="end" name="notifications"></ion-icon> -->
+      <p>Enabling notifications lets you receive <b>Notifynd's</b> location-based notifications.</p>
+    </ion-slide>
+
+    <ion-slide>
       <img src="./assets/astronaut.png" />
-      <h2>We respect your privacy</h2>
+      <h2>One more thing...</h2>
       <p>
-       <b>We don't store or share any of your locational data. To continue using Notifynd you must allow location tracking.</b>
+       <b>We respect your privacy. We don't store or share any of your locational data. To continue using Notifynd you must allow location tracking.</b>
       </p>
-      <ion-button fill="clear" (click)="allowLocationTracking()">Authorise location tracking</ion-button>
-      <ion-button href="./tabs/tab1" [disabled]="this.buttonDisabled"> Continue <ion-icon slot="end" name="arrow-forward"></ion-icon> </ion-button>
-    
-      
+      <ion-button id="authorise-button" fill="clear" (click)="allowLocationTracking()">Authorise location tracking</ion-button>
+      <ion-button id="continue-button" shape="round"[routerLink]="['/tabs', 'tab1']" [disabled]="this.locationButtonDisabled"> Continue <ion-icon slot="end" name="arrow-forward"></ion-icon> </ion-button>
     </ion-slide>
   </ion-slides>
 </ion-content>

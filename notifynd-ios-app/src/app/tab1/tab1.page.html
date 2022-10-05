@@ -1,18 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <img id="notifynd-logo" src="./assets/notifynd-logo-white.png"/>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
-  
+<ion-content scroll-y="false" [fullscreen]="true">
+  <div id="tab1-div">
+    <img id="cat-with-phone" src="./assets/cat-with-phone.png"/>
+    <ion-button shape="round" (click)="checkNotifications()">Check notifications</ion-button>
+  </div>
 </ion-content>
