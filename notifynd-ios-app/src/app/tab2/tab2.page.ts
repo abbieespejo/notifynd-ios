@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { collection, collectionData, DocumentData, Firestore } from '@angular/fire/firestore';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
-import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
 import { DataService } from '../services/data.service';
-declare var cordova: any;
 
 @Component({
   selector: 'app-tab2',
@@ -13,45 +10,32 @@ declare var cordova: any;
 })
 export class Tab2Page {
 
-
+  notif: any;
+  
   locationWatchStarted:boolean;
   locationSubscription:any;
   locationTraces = [];
 
-
-  collection = [];
-
   constructor(private geolocation: Geolocation,
-    private db: DataService,
-    private localNotif: LocalNotifications, 
-    private diagnostic: Diagnostic) { 
-    }
+    private db: DataService, private localNotif: LocalNotifications) { }
 
   scheduleLocationBasedNotif() {
-    cordova.plugins.notification.local.schedule({
-      id: 3,
-      title: 'Welcome to 10 Moana Road',
+    this.localNotif.schedule({
+      id: 10,
+      title: 'Welcome home!',
+      foreground: true,
       trigger: {
         type: 'location',
-        center: [-41.287901, 174.754702], // The center point of the geographic area.
-        radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
+        center: [-41.287901, 174.754702], 
+        radius: 5, 
         notifyOnEntry: true,
-        notifyOnExit: true
       }
-    });
-    // let result = this.localNotif.getScheduledIds()
-    this.localNotif.getScheduledIds().then(data => {
-      console.log("\nSCHEDULED NOTIFS IDs: " + data);
-    });
-    this.localNotif.getAll().then(data => {
-      console.log("\nALL NOTIF OBJECTS: \n" +
-        "--> " + data + "\n" +
-        "------------------------------------------");
     });
   }
   
   testNotif() {
     this.localNotif.schedule({
+      id: 5,
       title: 'This is a test notification',
       text: 'Hello!',
       foreground: true
@@ -75,7 +59,6 @@ export class Tab2Page {
     ]);
   }
 
-
   getCoordinates() {
     this.locationSubscription = this.geolocation.watchPosition();
     this.locationSubscription.subscribe((resp) => {
@@ -84,6 +67,20 @@ export class Tab2Page {
         "Longitude: " + resp.coords.longitude + "\n" +
         "------------------------------------------");
     });
+  }
+
+  getScheduledNotifs() {
+    this.localNotif.get(10).then(data => {
+      console.log("\nRETRIEVED NOTIFICATION:\n" +
+      "Title: " + data.title + "\n" +
+      "Text: " + data.text + "\n" + 
+      "Trigger details:\n" +
+      "Type of trigger: " + data.trigger.type + "\n" +
+      "Latitude: " + data.trigger.center[0] + "\n" +
+      "Longitude: " + data.trigger.center[1] + "\n" +
+      "Radius: " + data.trigger.radius + "\n" +
+      "Notify on entry: " + data.trigger.notifyOnEntry + "\n");
+    })
   }
 
   prepareNotifications() {
@@ -138,21 +135,4 @@ export class Tab2Page {
     });
 
   }
-  jfsdfjklf() {
-   this.localNotif.schedule({
-      id: 3,
-      title: 'Welcome to 10 Moana Road',
-      trigger: {
-        // type: 'location',
-        center: [-41.287901, 174.754702], // The center point of the geographic area.
-        radius: 3, // The radius (measured in meters) that defines the geographic area’s outer boundary.
-        notifyOnEntry: true,
-        notifyOnExit: true
-      }
-    });
-
-  }
 }
-
-
-
