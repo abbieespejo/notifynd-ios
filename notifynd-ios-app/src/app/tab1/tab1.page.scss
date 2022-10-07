@@ -1,0 +1,47 @@
+#notifynd-logo {
+    width: 65%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+
+}
+
+#dinosaur-on-scooter {
+    padding-top: 20%;
+    width: 80%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#tab1-div {
+    text-align: center;
+    position: absolute;
+}
+
+#button {
+    --background-color: #535eda;
+    --background-activated: #353e9d;
+}
+
+#stop-tracking-button {
+    --background-activated: #a21b1b;
+}
+
+
+.tracking-text {
+    font-size: 14px;
+}
+
+h3 {
+    color: #353e9d;
+}
+
+p {
+    padding: 0 50px;
+    font-size: 14px;
+    line-height: 1.5;
+}
