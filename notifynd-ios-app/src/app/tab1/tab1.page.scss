@@ -8,14 +8,13 @@
 
 }
 
-#cat-with-phone {
+#dinosaur-on-scooter {
     padding-top: 20%;
     width: 80%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
     display: block;
-    padding-bottom: 20%;
 }
 
 #tab1-div {
@@ -23,7 +22,26 @@
     position: absolute;
 }
 
-ion-button {
+#button {
     --background-color: #535eda;
     --background-activated: #353e9d;
+}
+
+#stop-tracking-button {
+    --background-activated: #a21b1b;
+}
+
+
+.tracking-text {
+    font-size: 14px;
+}
+
+h3 {
+    color: #353e9d;
+}
+
+p {
+    padding: 0 50px;
+    font-size: 14px;
+    line-height: 1.5;
 }

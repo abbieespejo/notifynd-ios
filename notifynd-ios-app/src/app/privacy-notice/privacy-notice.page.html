@@ -37,8 +37,11 @@
     <ion-slide>
       <img src="./assets/cat-with-phone.png" />
       <h2>Beep beep boop!</h2>
-      <ion-button id="notification-button" shape="round" (click)="prepareNotifications()">Enable notifications</ion-button>
-      <!-- <ion-icon slot="end" name="notifications"></ion-icon> -->
+
+      <ion-button *ngIf="checkNotifsAllowed === true; else elseBlock" id="notification-button" shape="round" (click)="allowNotifications()">Enable notifications</ion-button>
+      <ng-template #elseBlock>
+        <p id="ng-template">Notifications are already enabled.</p>
+      </ng-template>
       <p>Enabling notifications lets you receive <b>Notifynd's</b> location-based notifications.</p>
     </ion-slide>
 
@@ -46,10 +49,10 @@
       <img src="./assets/astronaut.png" />
       <h2>One more thing...</h2>
       <p>
-       <b>We respect your privacy. We don't store or share any of your locational data. To continue using Notifynd you must allow location tracking.</b>
+       <b>We respect your privacy. We don't store or share any of your geolocational data. To continue using Notifynd you must allow location sharing.</b>
       </p>
-      <ion-button id="authorise-button" fill="clear" (click)="allowLocationTracking()">Authorise location tracking</ion-button>
-      <ion-button id="continue-button" shape="round"[routerLink]="['/tabs', 'tab1']" [disabled]="this.locationButtonDisabled"> Continue <ion-icon slot="end" name="arrow-forward"></ion-icon> </ion-button>
+      <ion-button id="authorise-button" fill="clear" (click)="allowLocationTracking()">Authorise location sharing</ion-button>
+      <ion-button [disabled]="this.locationButtonDisabled" [routerLink]="['/tabs/tab1']" id="continue-button" shape="round"> Continue <ion-icon slot="end" name="arrow-forward"></ion-icon> </ion-button>
     </ion-slide>
   </ion-slides>
 </ion-content>

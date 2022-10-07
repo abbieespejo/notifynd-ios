@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
  
 @Component({
@@ -9,50 +9,44 @@ import { DataService } from '../services/data.service';
   styleUrls: ['tab1.page.scss']
 })
 
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
-  buttonDisabled: boolean = false;
+  watchID: number; // The id of the watchPosition interval.
+  trackingLocation: boolean = false; // boolean to check if device's location is currently being watched
 
-  constructor(private localNotif: LocalNotifications, private firestoreDB: DataService) {}
-
+  constructor(private firestoreDB: DataService) {}
   
- 
-  prepareNotifications() {
-    let notifCollection = this.firestoreDB.getNotifsInDB();
-    notifCollection.subscribe(docs => {
-      for (let i = 0; i <= docs.length; i++) {
-        this.localNotif.schedule({
-          id: i,
-          title: docs[i].title,
-          text: docs[i].text,
-          foreground: true,
-          trigger: {
-            // type: 'location',
-            center: [docs[i].latitude, docs[i].longitude],
-            radius: docs[i].radius,
-            notifyOnEntry: true
-          }
-        });
-      }
-    });
+  /**
+   * Once initialised, the notification documents are retrieved from Firestore db
+   * and scheduled as geolocational notifications.
+   */
+  ngOnInit(): void {
+    this.firestoreDB.prepareNotifications();
   }
 
-  checkNotifications() {
-    this.localNotif.getScheduledIds().then(result => {
-      for(let i = 0; i <= result.length; i++) {
-        this.localNotif.get(i).then(data => {
-          console.log("\nRETRIEVED NOTIFICATION: " + data[i].id +"\n" +
-          "Title: " + data[i].title + "\n" +
-          "Text: " + data[i].text + "\n" + 
-          "Trigger details:\n" +
-          "Latitude: " + data[i].trigger.center[0] + "\n" +
-          "Longitude: " + data[i].trigger.center[1] + "\n" +
-          "Radius: " + data[i].trigger.radius + "\n" +
-          "Notify on entry: " + data[i].trigger.notifyOnEntry + "\n");
-        })
-      
+  /**
+   * Watches live location of device. Method subscribes to any changes in the current
+   * position (x,y coordinates) of the device. 
+   */
+  trackLocation() {
+    this.trackingLocation = true;
+      // Simple geolocation API check provides values to publish
+      if(this.trackingLocation === true) {
+        this.watchID = navigator.geolocation.watchPosition(pos => {
+          console.log("\nWATCHING... COORDS HAVE CHANGED: \n" +
+              "Latitude: " + pos.coords.latitude + "\n" +
+              "Longitude: " + pos.coords.longitude + "\n" +
+              "------------------------------------------");
+        });
       }
-    });
+  }
+
+  /**
+   * Stop watching for changes to the device's location referenced by the watchID parameter.
+   */
+  stopTrackingLocation() {
+    this.trackingLocation = false;
+    navigator.geolocation.clearWatch(this.watchID);
   }
 
 }

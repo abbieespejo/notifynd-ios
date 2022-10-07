@@ -1,45 +1,65 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <img id="notifynd-logo" src="./assets/notifynd-logo-white.png"/>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="tab2-div">
+    <h2>Whatever you need, we're here to help!</h2>
+    <img id="cat-with-phone" src="./assets/cat-with-phone.png"/>
+  </div>
+    <ion-accordion-group>
+      <ion-accordion value="first">
+        <ion-item slot="header">
+          <b class="ion-label">How am I receiving notifications from Notifynd?</b>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Notifynd sends notifications related to participating parties (i.e. businesses, events, services and key locations). If you're sharing your location with Notifynd and you're within a certain radius of a participating party, you will receive a notification!
+        </div>
+      </ion-accordion>
+      <ion-accordion value="second">
+        <ion-item slot="header">
+          <b class="ion-label">How does Notifynd benefit me?</b>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Notifynd is a modern platform to discover key information about your nearby surroundings. As the saying goes, "you'll never know until you try it", but with Notifynd you'll learn important information by merely pressing a button! 
+        </div>
+      </ion-accordion>
+      <ion-accordion value="third">
+        <ion-item slot="header">
+          <b class="ion-label">Why does Notifynd need my live location?</b>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Notifynd uses your geolocational data to detect if you're within a certain radius of a participating party (i.e. businesses, events, services and key locations). Be assured that we do not store your geolocational data, nor do we share it with anyone else.
+        </div>
+      </ion-accordion>
+      <ion-accordion value="fourth">
+        <ion-item slot="header">
+          <b class="ion-label">I don't like the notifications I'm receiving</b>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          We're deeply sorry to hear that! Notifynd ensures that all notifications are relevant and beneficial. Please get in touch with us if you have received a notification that you did not like. 
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-  <p>BRUHHHHHHH</p>
-  <div *ngFor="let user of collection">
-    <div>
-     <p>{{user[0].text}}</p>
-     <p>"This is a string</p>
-    </div>
-   </div>
-  <!-- <ion-list>
-    <ion-item *ngFor="let location of locationTraces">
-      <ion-label class="ion-text-wrap">
-        <ion-label>Time: {{location.timestamp | date:'M/d/yy, h:mm a'}}</ion-label>
-        <ion-label>Latitude: {{location.latitude}} Longitude: {{location.longitude}}</ion-label>
-        <ion-label>Accuracy: {{location.accuracy}}</ion-label>
-      </ion-label>
-    </ion-item>
-  </ion-list> -->
-  <!-- <ng-container *ngIf="!locationWatchStarted; else elseTemplate">
-    <ion-button color="primary" (click)="getCoordinatesV2()">Start tracking</ion-button>
-  </ng-container>
-  <ng-template #elseTemplate>
-    Location Watch Started!
-  </ng-template> -->
-  <ion-button color="primary" (click)="testNotif()">1 Notification</ion-button>
-  <ion-button color="primary" (click)="testMultipleNotifs()">2 Notifications</ion-button>
-  <ion-button color="primary" (click)="scheduleLocationBasedNotif()">Location-based notification</ion-button>
-  <ion-button color="primary" (click)="getCoordinates()">Start tracking</ion-button>
-  <ion-button color="primary" (click)="getScheduledNotifs()">Get scheduled notifications</ion-button>
-
+          You can temporarily stop receiving all notifications at any point by turning off location services.
+        </div>
+      </ion-accordion>
+      <ion-accordion value="fifth">
+        <ion-item slot="header">
+          <b class="ion-label">How can I view notifications I've missed?</b>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Notifynd is only available on iOS devices, therefore you should be able to view any missed notifications in your 'Notification Centre'.
+        </div>
+      </ion-accordion>
+      <ion-accordion value="sixth">
+        <ion-item slot="header">
+          <b class="ion-label">I want to use Notifynd to reach out to potential customers</b>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Is Notifynd the right marketing platform for you? Get in touch with us if you'd like to advertise a business, event, service or key location on Notifynd.
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  
 </ion-content>

@@ -6,7 +6,20 @@
 
 <ion-content scroll-y="false" [fullscreen]="true">
   <div id="tab1-div">
-    <img id="cat-with-phone" src="./assets/cat-with-phone.png"/>
-    <ion-button shape="round" (click)="checkNotifications()">Check notifications</ion-button>
+    <img id="dinosaur-on-scooter" src="./assets/dinosaur-on-scooter.png"/>
+    <div *ngIf="trackingLocation === false; else elseBlock">
+      <h3>Location services are off</h3>
+      <p>Your location is not being shared to Notifynd and you will not receive location-based notifications.</p>
+      <br>
+      <ion-button class="button" shape="round" (click)="trackLocation()">
+        Share location
+      </ion-button>
+    </div>
+    <ng-template #elseBlock>
+      <h3>Location services are on</h3>
+      <p>You'll receive our nifty location-based notifications about the places and events around you. What will you discover today?</p>
+      <br>
+      <ion-button id="stop-tracking-button" shape="round" (click)="stopTrackingLocation()">Stop sharing location</ion-button>
+    </ng-template>
   </div>
 </ion-content>
