@@ -14,3 +14,6 @@ Currently, the geolocation technology used in [Notifynd is not functional](https
 <img width="387" alt="Screen Shot 2022-10-09 at 9 09 09 PM" src="https://github.com/abbieespejo/notifynd-ios/assets/66059185/4abcfaa6-87af-4afb-9f90-a3ffb232658d">
 <img width="387" alt="Screen Shot 2022-10-09 at 9 09 16 PM" src="https://github.com/abbieespejo/notifynd-ios/assets/66059185/aceaa02b-3b37-4f7c-9380-9c9b5ffab5e6">
 <img width="387" alt="Screen Shot 2022-10-09 at 9 09 33 PM" src="https://github.com/abbieespejo/notifynd-ios/assets/66059185/d54ed468-fb36-4612-aa5e-24353bb655c3">
+
+## Credits
+The cartoon images used in Notifynd's UI are by [@catalyststuff](https://www.freepik.com/author/catalyststuff) on Freepik. 
